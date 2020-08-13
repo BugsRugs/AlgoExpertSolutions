@@ -1,0 +1,24 @@
+import java.util.*;
+
+class Program {
+  public static boolean isValidSubsequence(List<Integer> array, List<Integer> sequence) {
+    // Write your code here.
+		int numChecked = 0;
+		boolean b = false;
+		for(int i = 0; i < sequence.size(); i++){
+			for(int j = 0; j < array.size(); j++){
+		if(array.get(j) == sequence.get(i)){
+			if(j >= numChecked && array.size() >= sequence.size()){
+					b = true;
+				  numChecked = j;
+			}
+				else{
+					b = false;
+				break;
+				}
+		   }
+			}
+		 }
+    return b;
+   }
+ }
