@@ -1,0 +1,15 @@
+import java.util.*;
+
+class Program {
+  public static int kadanesAlgorithm(int[] array) {
+    // Write your code here.
+		int maxEnding = array[0];
+		int maxRunning = array[0];
+		for(int i = 1; i < array.length; i++){
+			int temp = array[i];
+		maxEnding = Math.max(temp, maxEnding + temp);
+			maxRunning = Math.max(maxRunning, maxEnding);
+			}
+    return maxRunning;
+  }
+}
