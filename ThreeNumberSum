@@ -1,0 +1,53 @@
+import java.util.*;
+import java.util.Arrays; 
+
+class Program {
+  public static List<Integer[]> threeNumberSum(int[] array, int targetSum) {
+    // Write your code here.
+		int smallest1 = 1000000; 
+		int smallest2 = 1000000; 
+		int smallest3 = 1000000; 
+		List<Integer[]> theList = new ArrayList<Integer[]>();
+		for(int i = 0; i < array.length; i++){
+			for(int j = 1 + i; j < array.length; j++){
+				for(int q = 1 + j; q < array.length; q++){
+					if(array[i] + array[j] + array[q] == targetSum){
+						int[] temp = {array[i], array[j], array[q]};
+						Arrays.sort(temp);
+						
+						 Integer[] result = new Integer[temp.length];
+	          for (int m = 0; m < temp.length; m++) {
+		         result[m] = Integer.valueOf(temp[m]);
+	        }
+						
+						for(int h = 0; h < theList.size(); h++){
+						if(temp[0] < smallest1){
+							theList.add(0, result);
+							smallest1 = temp[0];
+						}
+				    else if(temp[0] <= smallest1 && temp[1] < smallest2){
+							theList.add(0, result);
+							smallest1 = temp[0];
+							smallest2 = temp[1];
+						}
+					  else if(temp[0] <= smallest1 && temp[1] <= smallest2 && temp[2] < smallest3){
+							theList.add(0, result);
+							smallest1 = temp[0];
+							smallest2 = temp[1];
+							smallest3 = temp[2];
+						}
+						else{
+							theList.add(result);
+						}
+						
+				 }
+					
+				}
+       }
+			}
+		}
+	
+		
+    return theList;
+  }
+}
