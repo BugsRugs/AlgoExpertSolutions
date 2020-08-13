@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Program {
+  public static List<Integer> moveElementToEnd(List<Integer> array, int toMove) {
+    // Write your code here.
+	  ArrayList<Integer> list = new ArrayList<Integer>();
+		ArrayList<Integer> tist = new ArrayList<Integer>();
+		ArrayList<Integer> fin = new ArrayList<Integer>();
+		for(int i = 0; i < array.size(); i++){
+			if(array.get(i) == toMove){
+				list.add(array.get(i));
+			}
+			else{
+				tist.add(array.get(i));
+			}
+		}
+		fin.addAll(tist);
+		fin.addAll(list);
+    return fin;
+  }
+}
