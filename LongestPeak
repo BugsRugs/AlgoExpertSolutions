@@ -1,0 +1,48 @@
+import java.util.*;
+
+class Program {
+  public static int longestPeak(int[] array) {
+    // Write your code here.
+		ArrayList<Integer> peaks = new ArrayList<Integer>();
+		int result = 0;
+		if(array.length < 3){
+			return 0;}
+	
+		for(int i = 1; i < array.length - 1; i++){
+			if(array[i - 1] < array[i] && array[i + 1] < array[i]){
+				peaks.add(i);
+			}
+		}
+		//System.out.println("Peaks: " + peaks);
+		if(peaks.size() <= 0){
+			return 0;
+		}
+		int i = 0; 
+		int j = array.length; 
+		ArrayList<Integer> peakLengths = new ArrayList<Integer>();
+		for(int h = 0; h < peaks.size(); h++){
+			result = 1;
+			int qq = peaks.get(h);
+		while(qq - 1 >= i && array[qq - 1] < array[qq]){
+				result++;
+				qq--;
+			  //System.out.println("Array comparison: " + array[qq - 1] + " " + array[qq]);
+				//System.out.println("First While, result: " + result);
+			}
+	 qq = peaks.get(h);
+		while(qq + 1 < j && array[qq + 1] < array[qq]){
+				result++;
+				qq++;
+			//System.out.println("Array comparison: " + array[qq + 1] + " " + array[qq]);
+				//System.out.println("Second While, result: " + result);
+	     }
+			
+			
+			peakLengths.add(result);
+			//System.out.println("Result of peak length: " + result);
+			//System.out.println("peakLengths: " + peakLengths);
+     }
+		int meep = Collections.max(peakLengths);
+				 return meep;
+   }
+  }
