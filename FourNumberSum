@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Program {
+  public static List<Integer[]> fourNumberSum(int[] array, int targetSum) {
+    // Write your code here.
+	   ArrayList<Integer[]> listOfSum = new ArrayList<Integer[]>();
+		//dimension 1 is index, dimension 2 is sum, dimension 3 is numbers//
+		int[] sum = new int[array.length - 1];
+		ArrayList<Integer> temp = new ArrayList<Integer>();
+		for(int i = 0; i < array.length - 1; i++){
+			sum[i] = array[i] + array[i + 1];
+			System.out.println("sum " + sum[i]);
+			temp.add(array[i]);
+			System.out.println("arrayi " + array[i]);
+			temp.add(array[i + 1]);
+			System.out.println("arrayi+1 " + array[i + 1]);
+		}
+		for(int j = 0; j < sum.length - 1; j++){
+		for(int i = 1 + j; i < sum.length; i++){
+			if(sum[j] + sum[i] == targetSum){
+				Integer[] temp3 = {temp.get(i * 2), temp.get(i * 2 + 1), temp.get(j * 2), temp.get(j * 2 + 1)};
+				System.out.println("list " + listOfSum);
+				listOfSum.add(temp3);
+			}
+		}
+		}
+    return listOfSum;
+  }
+}
