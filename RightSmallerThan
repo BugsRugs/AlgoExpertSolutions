@@ -1,0 +1,19 @@
+import java.util.*;
+
+class Program {
+  public static List<Integer> rightSmallerThan(List<Integer> array) {
+    // Write your code here.
+		List<Integer> results = new ArrayList<Integer>();
+		int num = 0;
+		for(int j = 0; j < array.size(); j++){
+		for(int i = 0 + j; i < array.size(); i++){
+				if(array.get(j) > array.get(i)){
+					num++;
+	    }
+     }
+			results.add(num);
+			num = 0;
+   }
+		return results;
+ }
+}
