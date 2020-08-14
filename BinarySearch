@@ -1,0 +1,12 @@
+import java.util.*;
+import java.util.Arrays;
+class Program {
+  public static int binarySearch(int[] array, int target) {
+    // Write your code here.
+		int p = Arrays.binarySearch(array, target);
+		if(p < 0){
+			p = -1;
+		}
+		return p;
+  }
+}
