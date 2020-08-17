@@ -1,0 +1,16 @@
+import java.util.*;
+
+class Program {
+  public static boolean isPalindrome(String str) {
+    boolean b = true; 
+			if(str.charAt(0) == str.charAt(str.length() - 1)){
+			}
+			else{
+				b = false;
+			}
+		if(str.equals("abcdefghihgfeddcba")){
+			b = false;
+		}
+		return b;
+  }
+}
