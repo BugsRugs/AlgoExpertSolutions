@@ -1,0 +1,39 @@
+import java.util.*;
+
+class Program {
+  public static String caesarCypherEncryptor(String str, int key) {
+    //char unicode = (char) 122; //97 = a 122 = z
+		String s = "";
+		int[] unicodeList = new int[str.length()];
+		while(key >= 26){
+			key -= 26;
+		}
+		System.out.println("key: " + key);
+		for(int i = 0; i < str.length(); i++){
+			char t = str.charAt(i);
+			int numOfCharacter = (char) t;
+			unicodeList[i] = numOfCharacter - 97;
+			System.out.println("unicodeList1 " + unicodeList[i]);
+		}
+		for(int j = 0; j < str.length(); j++){
+			if(unicodeList[j] + key > 26){
+				unicodeList[j] = (unicodeList[j] + key) - 26; 
+			}
+			else{
+				unicodeList[j] = unicodeList[j] + key;
+			}
+		  System.out.println("unicodeList2 " + unicodeList[j]);
+		}
+		for(int q = 0; q < unicodeList.length; q++){
+				unicodeList[q] += 97;
+			if(unicodeList[q] == 123){
+				unicodeList[q] = 97;
+			}
+				char unicode = (char) unicodeList[q];
+				s += unicode;
+		   System.out.println("unicodeList3 " + unicodeList[q]);
+		}
+		
+		return s;
+  }
+}
