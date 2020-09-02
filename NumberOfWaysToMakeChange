@@ -1,0 +1,17 @@
+import java.util.*;
+
+class Program {
+  public static int numberOfWaysToMakeChange(int n, int[] denoms) {
+    // Write your code here.
+		int[] pos = new int[n + 1];
+		pos[0] = 1;
+		for(int denom : denoms){
+			for(int a = 1; a < n + 1; a++){
+				if(denom <= a){
+					pos[a] += pos[a - denom];
+				}
+			}
+		}
+    return pos[n];
+  }
+}
