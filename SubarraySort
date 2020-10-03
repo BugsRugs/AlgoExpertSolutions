@@ -1,0 +1,86 @@
+import java.util.*;
+import java.util.ArrayList;
+class Program {
+  public static int[] subarraySort(int[] array) {
+		int[] n = {-1, -1};
+		boolean b = true;
+		int index = 1;
+		int currentLargest = -10000;
+		int currentSmallest = 100000;
+		int unsortedSmallest = 10000;
+		int[] result = new int[2];
+		ArrayList<Integer> record = new ArrayList<Integer>();
+    if(array.length < 2){
+			return n;
+		}
+		else if(array.length == 2){
+			if(array[0] > array[1]){
+				return new int[] {0, 1};
+			}
+			else{
+				return n;
+			}
+		}
+		while(b == true){
+			if(array[index] < currentLargest){
+				record.add(index);
+				System.out.println("Indice added: " + index);
+			}
+			else{
+				currentLargest = array[index];
+				System.out.println("Current largest updated: " + currentLargest);
+			}
+			if(array[index - 1] > array[index]){
+				if(array[index] < unsortedSmallest){
+					unsortedSmallest = array[index];
+					System.out.println("Unsorted smallest: " + unsortedSmallest);
+				}
+			}
+			if(array[index] < currentSmallest){
+				currentSmallest = array[index];
+			}
+			if(index + 1 < array.length){
+				index++;
+      }
+			else{
+				b = false;
+			}
+		}
+		if(record.isEmpty() == false){
+			int val = record.get(record.size() - 1);
+			System.out.println("Last indice value in record: " + val);
+			result[1] = val;
+			System.out.println("Result of 1: " + result[1]);
+			
+			for(int i = 0; i < array.length; i++){
+				System.out.println("array of val: " + array[val]);
+				System.out.println("array of i: " + array[i]);
+				System.out.println("i: " + i);
+				if(array[i] == unsortedSmallest){
+					result[0] = i + 1;
+					return result;
+				}
+				if(array[i] > unsortedSmallest){
+					result[0] = i;
+					return result;
+				}
+				if(array[0] > currentSmallest){
+					result[0] = 0;
+					return result;
+				}
+				if(array[i] == array[val]){
+				result[0] = i + 1;
+					return result;
+				}
+				if(array[i] <= array[val]){
+				}
+				else{
+					result[0] = i;
+					System.out.println("Final Result of 0: " + result[0]);
+					return result;
+				}
+			}
+			}
+			return n;
+		}
+  }
