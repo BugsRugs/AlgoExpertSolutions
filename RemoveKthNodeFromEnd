@@ -1,0 +1,29 @@
+import java.util.*;
+class Program {
+  public static void removeKthNodeFromEnd(LinkedList head, int k) {
+    if(head.next.next == null) {
+			if(k == 1) head = head.next;
+			if(k == 2) head.next = head;
+			}
+		boolean b = true;
+		LinkedList previous = head;
+		int index = 0;
+		while(b == true && head.next != null){
+			if(index == k){
+				previous = previous.next;
+				index--;
+			}
+			head = head.next;
+			index++;
+		}
+		if(index != k) previous.value = previous.next.value;
+		previous.next = previous.next.next;
+  }
+  static class LinkedList {
+    int value;
+    LinkedList next = null;
+    public LinkedList(int value) {
+      this.value = value;
+    }
+  }
+}
