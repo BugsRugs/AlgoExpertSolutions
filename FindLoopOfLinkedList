@@ -1,0 +1,43 @@
+import java.util.*;
+import java.util.ArrayList;
+
+class Program {
+  public static LinkedList findLoop(LinkedList head) {
+		ArrayList<LinkedList> valuesList = new ArrayList<LinkedList>();
+		LinkedList current = head;
+		boolean b = true;
+		int i = 0;
+		while(b == true){
+		  i = valuePassed(valuesList, current);
+			if(i < -1 && current != null){
+				valuesList.add(current);
+			  current = current.next;
+			}else{
+				b = false;
+			}
+		}
+		current = head;
+		for(int j = 0; j < i; j++){
+			current = current.next;
+		}
+    return current;
+  }
+	
+	public static int valuePassed(ArrayList<LinkedList> array, LinkedList num){
+		for(int i = 0; i < array.size(); i++){
+			if(array.get(i) == num){
+				return i;
+			}
+		}
+		return -2;
+	}
+
+  static class LinkedList {
+    int value;
+    LinkedList next = null;
+
+    public LinkedList(int value) {
+      this.value = value;
+    }
+  }
+}
