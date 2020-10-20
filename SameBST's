@@ -1,0 +1,38 @@
+import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+class Program {
+  public static boolean sameBsts(List<Integer> arrayOne, List<Integer> arrayTwo) {
+    if(arrayOne.size() == 0 || arrayTwo.size() == 0){
+			return true;
+		}if(arrayOne.size() != arrayTwo.size()) {
+			return false;
+		}if(arrayOne.get(0) != arrayTwo.get(0)){
+			return false;
+		} 
+	  ArrayList<Integer> leftOne = new ArrayList<Integer>(arrayOne);
+		ArrayList<Integer> leftTwo = new ArrayList<Integer>(arrayTwo);
+		ArrayList<Integer> rightOne = new ArrayList<Integer>();
+		ArrayList<Integer> rightTwo = new ArrayList<Integer>();
+		Collections.sort(leftOne);
+		Collections.sort(leftTwo);
+		for(int j = 0; j < leftOne.size(); j++){
+			if(leftOne.get(j) != leftTwo.get(j)) return false;
+		}
+		leftOne.clear();
+		leftTwo.clear();
+		for(int i = 1; i < arrayOne.size(); i++){
+			if(arrayOne.get(i) < arrayOne.get(0)){
+				leftOne.add(arrayOne.get(i));
+			}else{
+				rightOne.add(arrayOne.get(i));
+			}
+			if(arrayTwo.get(i) < arrayTwo.get(0)){
+				leftTwo.add(arrayTwo.get(i));
+			}else{
+				rightTwo.add(arrayTwo.get(i));
+			}
+		}
+    return sameBsts(rightOne, rightTwo) && sameBsts(leftOne, leftTwo);
+	}
+}
