@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Program {
+  // This is an input class. Do not edit.
+  public static class LinkedList {
+    int value;
+    LinkedList next;
+
+    LinkedList(int value) {
+      this.value = value;
+      this.next = null;
+    }
+  }
+
+  public static LinkedList mergeLinkedLists(LinkedList headOne, LinkedList headTwo) {
+    LinkedList headOneCopy = headOne;
+		LinkedList temp = null;
+		LinkedList headTwoCopy = headTwo;
+		while(headOneCopy != null && headTwoCopy != null){
+			if(headOneCopy.value < headTwoCopy.value){
+				temp = headOneCopy;
+				headOneCopy = headOneCopy.next;
+			}else{
+				if(temp != null){
+					temp.next = headTwoCopy;
+				}
+				temp = headTwoCopy;
+				headTwoCopy = headTwoCopy.next;
+				temp.next = headOneCopy;
+			}
+     }
+		if(headOneCopy == null) temp.next = headTwoCopy;
+		if(headOne.value < headTwo.value){ 
+			return headOne;
+		}else{
+			return headTwo;
+		}
+		//final If/Else can be written as, return headOne.value < headTwo.value ? headOne : headTwo;
+  }
+}
