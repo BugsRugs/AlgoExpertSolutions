@@ -1,0 +1,20 @@
+import java.util.*;
+class Program {
+  public int[] arrayOfProducts(int[] array) {
+		int product = 1;
+		int[] result = new int[array.length];
+		int index = 0;
+    for(int i = 0; i < array.length; i++){
+			while(index < array.length){
+				if(index != i){
+					product = product * array[index];
+				}
+				index++;
+			}
+			result[i] = product;
+			product = 1;
+			index = 0;
+		}
+    return result;
+  }
+}
