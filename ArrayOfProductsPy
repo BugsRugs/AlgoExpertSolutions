@@ -1,0 +1,14 @@
+import array as arr
+def arrayOfProducts(array):
+	length = len(array)
+	a = [1 for _ in range(len(array))]
+	
+	for i in range(length):
+		num = 1
+		for index in range(length):
+			if index != i:
+				num = num * array[index]
+			index += 1
+		a[i] = num
+	
+	return a
