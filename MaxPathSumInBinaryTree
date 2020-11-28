@@ -1,0 +1,38 @@
+import java.util.*;
+
+class Program {
+  public static int maxPathSum(BinaryTree tree) {
+		ArrayList<Integer> list = pathSum(tree);
+    return list.get(1);
+  }
+	
+	public static ArrayList<Integer> pathSum(BinaryTree tree){
+		if(tree == null) return new ArrayList<Integer>(Arrays.asList(0, Integer.MIN_VALUE));
+		
+		Integer value = tree.value;
+		ArrayList<Integer> left = pathSum(tree.left);
+		Integer leftBranchMax = left.get(0);
+		Integer leftTriangleMax = left.get(1);
+		
+		ArrayList<Integer> right = pathSum(tree.right);
+		Integer rightBranchMax = right.get(0);
+		Integer rightTriangleMax = right.get(1);
+		
+		Integer maxChildBranch = Math.max(rightBranchMax, leftBranchMax);
+		Integer maxSumBranch = Math.max(maxChildBranch + value, value);
+		Integer maxTriangle = Math.max(leftBranchMax + value + rightBranchMax, maxSumBranch);
+		Integer maxPath = Math.max(leftTriangleMax, Math.max(rightTriangleMax, maxTriangle));
+		
+		return new ArrayList<Integer>(Arrays.asList(maxSumBranch, maxPath));
+	}
+
+  static class BinaryTree {
+    public int value;
+    public BinaryTree left;
+    public BinaryTree right;
+
+    public BinaryTree(int value) {
+      this.value = value;
+    }
+  }
+}
