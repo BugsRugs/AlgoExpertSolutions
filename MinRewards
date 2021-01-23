@@ -1,0 +1,30 @@
+import java.util.*;
+// create awards array, rewards[j] will be the max of rewards[j] and rewards[j+1] + 1
+// iterate through
+// if num is smaller than previous, iterate back and increment
+// if num is greater than previous, increment up
+
+//iterate through, is its greater that previous incremnet up from previous, now otherwise
+//while scores[j] are greater than scores[j + 1] and iteratnig backwards, rewards[j]
+//is going to be the max of j reward and j + 1 reward + 1
+class Program {
+  public static int minRewards(int[] scores) {
+		int sum = 0;
+    int[] rewards = new int[scores.length];
+		Arrays.fill(rewards, 1);
+		for(int i = 1; i < scores.length; i++){
+			if(scores[i] > scores[i - 1]){
+				rewards[i] = rewards[i - 1] + 1;
+			}else{
+				int k = i - 1;
+				while(k >= 0 && scores[k] > scores[k + 1]){
+					rewards[k] = Math.max(rewards[k], rewards[k + 1] + 1);
+					k--;
+				}
+			}
+		}for(int j : rewards){
+			sum += j;
+		}
+		return sum;
+  }
+}
