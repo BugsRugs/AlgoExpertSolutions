@@ -1,0 +1,14 @@
+import java.util.*;
+import java.util.Arrays;
+class Program {
+
+  public int minimumWaitingTime(int[] queries) {
+    Arrays.sort(queries); 
+		int sum = 0, num = 0;
+		for(int i = 0; i < queries.length - 1; i++){
+			num += queries[i];
+			sum += num;
+		}
+    return sum;
+  }
+}
