@@ -1,0 +1,34 @@
+import java.util.*;
+import java.util.Collections;
+
+class Program {
+  // This is an input class. Do not edit.
+  static class BST {
+    public int value;
+    public BST left = null;
+    public BST right = null;
+
+    public BST(int value) {
+      this.value = value;
+    }
+  }
+
+  public int findKthLargestValueInBst(BST tree, int k) {
+  ArrayList<Integer> list = new ArrayList<Integer>();
+		list.add(tree.value);
+		list = helper(tree, list);
+		Collections.sort(list);
+    return list.get(list.size() - k);
+  }
+	
+	public ArrayList<Integer> helper(BST tree, ArrayList<Integer> list){
+		if(tree.left != null){
+			list.add(tree.left.value);
+			helper(tree.left, list);
+		}if(tree.right != null){
+			list.add(tree.right.value);
+			helper(tree.right, list);
+		}
+		return list;
+	}
+}
