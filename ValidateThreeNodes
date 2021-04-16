@@ -1,0 +1,41 @@
+import java.util.*;
+
+class Program {
+  // This is an input class. Do not edit.
+  static class BST {
+    public int value;
+    public BST left = null;
+    public BST right = null;
+
+    public BST(int value) {
+      this.value = value;
+    }
+  }
+
+  public boolean validateThreeNodes(BST nodeOne, BST nodeTwo, BST nodeThree) {
+    if(descendant(nodeOne, nodeTwo)){
+			return descendant(nodeTwo, nodeThree);
+		}if(descendant(nodeThree, nodeTwo)){
+			return descendant(nodeTwo, nodeOne);
+		}
+    return false;
+  }
+	
+	public boolean descendant(BST ancestor, BST descendant){
+		if(ancestor == null){
+			return false;
+		}if(ancestor.value == descendant.value){
+			return true;
+		}if(ancestor.value >= descendant.value){
+			return descendant(ancestor.left, descendant);
+		}else{
+			return descendant(ancestor.right, descendant);
+		}
+	}
+	
+	
+}
+
+/* so they check both orders of descendent in primary function, then in the descendant function 
+   they see if the values match and finally recursively call the left or right branch depending on the 
+	 value of node they're checking in relation to the node they're at*/
