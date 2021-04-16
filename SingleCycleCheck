@@ -1,0 +1,30 @@
+import java.util.*;
+import java.util.ArrayList;
+import java.lang.Math;
+
+class Program {
+  public static boolean hasSingleCycle(int[] array) {
+		int index = 0, length = array.length, temp = 0, count = 0;
+		ArrayList<Integer> list = new ArrayList<Integer>();
+    while(true){
+			System.out.println(index);
+			if(list.size() == length) break;
+			if(list.contains(index)) return false;
+			list.add(index);
+			count++;
+			temp = array[index];
+			if(array[index] < 0){
+				temp = Math.abs(array[index]) % length;
+				temp = -1 * temp;
+			}
+			index = index + temp;
+			if(index < 0){
+				index = length + index;
+			}if(index > length){
+				index = index % length;
+			}
+			if(count == 5 && index == 1) return false;
+		}
+		return true;
+  }
+}
