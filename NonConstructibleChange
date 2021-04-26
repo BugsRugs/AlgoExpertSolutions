@@ -1,0 +1,12 @@
+import java.util.*;
+class Program {
+  public int nonConstructibleChange(int[] coins) {
+    Arrays.sort(coins);
+		int min = 0;
+		for(int i : coins){
+			if(i > min + 1) return min + 1;
+			min += i;
+		}
+    return min + 1;
+  }
+}
