@@ -1,0 +1,23 @@
+# This is an input class. Do not edit.
+class BST:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+
+def reconstructBst(preOrderTraversalValues):
+	if len(preOrderTraversalValues) == 0:
+		return None
+	
+    rootVal = preOrderTraversalValues[0]
+	rightIdx = len(preOrderTraversalValues)
+	
+	for i in range(1, len(preOrderTraversalValues)):
+		if preOrderTraversalValues[i] >= rootVal:
+			rightIdx = i
+			break
+			
+	rightSub = reconstructBst(preOrderTraversalValues[rightIdx:])
+	leftSub = reconstructBst(preOrderTraversalValues[1:rightIdx])
+    return BST(rootVal, leftSub, rightSub)
