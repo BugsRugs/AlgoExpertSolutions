@@ -1,0 +1,8 @@
+def minNumberOfCoinsForChange(n, denoms):
+    lista = [float("inf") for i in range(n + 1)] 
+	lista[0] = 0
+	for i in denoms:
+		for j in range(n + 1):
+			if i <= j:
+				lista[j] = min(lista[j], lista[j - i] + 1)
+    return lista[n] if lista[n] != float("inf") else -1
