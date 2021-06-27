@@ -1,0 +1,21 @@
+def maxSumIncreasingSubsequence(array):
+    sequences = [None for i in array]
+	sums = array[:]
+	maxIdx = 0
+	for i in range(len(array)):
+		inum = array[i]
+		for j in range(0, i):
+			jnum = array[j]
+			if inum > jnum and sums[i] < sums[j] + inum:
+				sums[i] = sums[j] + inum
+				sequences[i] = j
+		if sums[i] > sums[maxIdx]:
+			maxIdx = i
+    return [sums[maxIdx], sequenceMaker(array, maxIdx, sequences)]
+
+def sequenceMaker(array, maxIdx, sequences):
+	numList = []
+	while maxIdx is not None:
+		numList.append(array[maxIdx])
+		maxIdx = sequences[maxIdx]
+	return list(reversed(numList))
