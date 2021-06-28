@@ -1,0 +1,32 @@
+def minNumberOfJumps(array):
+    if len(array) <= 1:
+		return 0
+	elif len(array) == 2:
+		return 1
+	jumps = array[0]
+	index = 0
+	pos = 0
+	largest = 0
+	count = 0
+	while(True):
+		print("pos: " + str(pos) + ", count: " + str(count) + ", index: " + str(index) + ", largest: " + str(largest))
+		if index + 1 == len(array):
+			count += 1
+			break
+		if jumps > 0:
+			index += 1
+			jumps -= 1
+			if array[index] >= largest:
+				largest = array[index]
+				pos = index
+		else:
+			print("reached")
+			if index >= pos + largest:
+				pos = index
+				jumps = array[pos]
+			else:
+				jumps = largest
+				index = pos
+			count += 1
+			largest = 0
+	return count
