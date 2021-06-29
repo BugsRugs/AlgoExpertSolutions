@@ -1,0 +1,18 @@
+def waterArea(heights):
+    if len(heights) <= 2:
+		return 0
+	leftIdx = 0
+	rightIdx = len(heights) - 1
+	leftMax = heights[leftIdx]
+	rightMax = heights[rightIdx]
+	area = 0
+	while(rightIdx > leftIdx):
+		if heights[leftIdx] < heights[rightIdx]:
+			leftIdx += 1
+			leftMax = max(leftMax, heights[leftIdx])
+			area += leftMax - heights[leftIdx]
+		else:
+			rightIdx -= 1
+			rightMax = max(rightMax, heights[rightIdx])
+			area += rightMax - heights[rightIdx]
+    return area
