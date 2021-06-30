@@ -1,0 +1,32 @@
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def sumOfLinkedLists(linkedListOne, linkedListTwo):
+    str1 = ""
+	str2 = ""
+	while(True):
+		if linkedListOne == None and linkedListTwo == None:
+			break
+		if linkedListOne != None:
+			str1 += str(linkedListOne.value)
+			linkedListOne = linkedListOne.next
+		if linkedListTwo != None:
+			str2 += str(linkedListTwo.value)
+			linkedListTwo = linkedListTwo.next
+	str1 = str1[::-1]
+	str2 = str2[::-1]
+	result = int(str1) + int(str2)
+	result = str(result)
+	temp = lister(result)
+    return temp
+
+def lister(number):
+	if len(number) <= 0:
+		return None
+	node = LinkedList(int(number[len(number) - 1]))
+	node.next = lister(number[:len(number) - 1])
+	return node
