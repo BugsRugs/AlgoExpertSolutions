@@ -1,0 +1,10 @@
+def validStartingCity(distances, fuel, mpg):
+    iGas = 0
+	quantities = []
+	for i in range(len(fuel)):
+		iGas += fuel[i] * mpg - distances[i]
+		quantities.append(iGas)
+    index = quantities.index(min(quantities)) + 1
+	if index >= len(fuel):
+		index = len(fuel) % index
+	return index
