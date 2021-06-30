@@ -1,0 +1,11 @@
+def taskAssignment(k, tasks):
+	indices = []
+	results = []
+	for i in range(len(tasks)):
+		indices.append([tasks[i], i])
+	indices.sort()
+	for i in range(len(tasks)):
+		if i >= len(tasks) / 2:
+			break
+		results.append([indices[i][1], indices[len(tasks) - 1 - i][1]])
+    return results
