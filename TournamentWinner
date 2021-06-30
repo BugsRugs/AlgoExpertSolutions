@@ -1,0 +1,11 @@
+def tournamentWinner(competitions, results):
+    # [home, away] 1 = home won, 0 = away won
+	teams = []
+	scores = [0 for i in range(len(results))]
+	for i in range(len(results)):
+		if competitions[i][not(results[i])] not in teams:
+			teams.append(competitions[i][not(results[i])])
+			scores[teams.index(competitions[i][not(results[i])])] += 3
+		else:
+			scores[teams.index(competitions[i][not(results[i])])] += 3
+    return teams[scores.index(max(scores))]
