@@ -1,0 +1,23 @@
+# This is an input class. Do not edit.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def removeDuplicatesFromLinkedList(linkedList):
+	largest = -100
+	prevNode = None
+	tempNode = linkedList
+	nextNode = tempNode.next
+    while(True):
+		if tempNode == None:
+			break
+		if tempNode.value > largest:
+			largest = tempNode.value
+			prevNode = tempNode
+			tempNode = tempNode.next
+		else:
+			prevNode.next = tempNode.next
+			tempNode = prevNode.next
+    return linkedList
