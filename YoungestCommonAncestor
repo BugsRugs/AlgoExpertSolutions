@@ -1,0 +1,22 @@
+# This is an input class. Do not edit.
+class AncestralTree:
+    def __init__(self, name):
+        self.name = name
+        self.ancestor = None
+
+
+def getYoungestCommonAncestor(topAncestor, descendantOne, descendantTwo):
+    visited1 = []
+	visited2 = []
+	traveler(topAncestor, descendantOne, visited1)
+	traveler(topAncestor, descendantTwo, visited2)
+	for i in range(len(visited1)):
+		if visited1[i] in visited2:
+			return visited1[i]
+
+def traveler(top, curr, visited):
+	visited.append(curr)
+	if curr == top:
+		return
+	else:
+		return traveler(top, curr.ancestor, visited)
