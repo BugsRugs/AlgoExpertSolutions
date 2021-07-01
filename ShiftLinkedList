@@ -1,0 +1,30 @@
+# This is the class of the input linked list.
+class LinkedList:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+def shiftLinkedList(head, k):
+    countNode = head
+	count = 1
+	print(k)
+	while(True):
+		if countNode.next == None:
+			break
+		else:
+			count += 1
+			countNode = countNode.next
+			
+	k = count - k
+    k = k % count
+	if k == 0:
+		return head
+	tailNode = head
+
+	for i in range(k - 1):
+		tailNode = tailNode.next
+	headNode = tailNode.next
+	tailNode.next = None
+	countNode.next = head
+	return headNode
