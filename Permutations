@@ -1,0 +1,15 @@
+def getPermutations(array):
+	if len(array) == 0:
+		return []
+	results = []
+	helper(array, [], results)
+	return results
+		
+def helper(array, perm, permList):
+	if len(array) <= 0:
+		permList.append(perm)
+	else:
+		for i in range(len(array)):
+			nextArray = array[:i] + array[i+1:]
+			nextPerm = perm + [array[i]]
+			helper(nextArray, nextPerm, permList)
