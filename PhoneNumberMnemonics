@@ -1,0 +1,26 @@
+def phoneNumberMnemonics(phoneNumber):
+	combos = []
+	helper(phoneNumber, combos, "")#
+	return combos
+def helper(phoneNumber, combos, currentString):#
+    if len(phoneNumber) <= 0:
+		combos.append(currentString)
+		return ""
+	mapDigit = mappings[phoneNumber[0]]
+	newString = ""
+	for i in range(len(mapDigit)):
+		newString = helper(phoneNumber[1:], combos, currentString + mapDigit[i])#
+	return newString
+
+mappings = {
+	"0" : "0",
+	"1" : "1",
+	"2" : "abc",
+	"3" : "def",
+	"4" : "ghi",
+	"5" : "jkl",
+	"6" : "mno",
+	"7" : "pqrs",
+	"8" : "tuv",
+	"9" : "wxyz",
+}
