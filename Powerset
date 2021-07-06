@@ -1,0 +1,10 @@
+def powerset(array, idx = None):
+    if idx == None:
+		idx = len(array) - 1
+	if idx < 0:
+		return [[]]
+	subsets = powerset(array, idx - 1)
+	for i in range(len(subsets)):
+		currSet = subsets[i]
+		subsets.append(subsets[i] + [array[idx]])
+    return subsets
