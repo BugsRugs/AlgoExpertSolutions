@@ -1,0 +1,20 @@
+def threeNumberSort(array, order):
+    values = [0, 0, 0]
+	for i in range(len(array)):
+		if array[i] == order[0]:
+			values[0] += 1
+		if array[i] == order[1]:
+			values[1] += 1
+		if array[i] == order[2]:
+			values[2] += 1
+	for i in range(len(array)):
+		if values[0] != 0:
+			array[i] = order[0]
+			values[0] -= 1
+		elif values[1] != 0:
+			array[i] = order[1]
+			values[1] -= 1
+		elif values[2] != 0:
+			array[i] = order[2]
+			values[2] -= 1
+    return array
