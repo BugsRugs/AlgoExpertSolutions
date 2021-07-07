@@ -1,0 +1,42 @@
+def removeIslands(matrix):
+	for i in range(len(matrix)): #left and right border
+		dfs(matrix, i, 0)
+		dfs(matrix, i, len(matrix[0]) - 1)
+	for i in range(len(matrix[0])):
+		dfs(matrix, 0, i)
+		dfs(matrix, len(matrix) - 1, i)
+	for i in range(len(matrix)):
+		for j in range(len(matrix[0])):
+			num = matrix[i][j]
+			if num == 1:
+				matrix[i][j] = 0
+			if num == 2:
+				matrix[i][j] = 1
+    return matrix
+
+def dfs(matrix, i, j):
+	stack = [(i, j)]
+	if matrix[i][j] == 0:
+		return
+	matrix[i][j] = 2
+	while len(stack) > 0:
+		currentI, currentJ = stack.pop()
+		neighbors = getNeighbors(matrix, currentI, currentJ)
+		for neighbor in neighbors:
+			neighborI, neighborJ = neighbor
+			if matrix[neighborI][neighborJ] == 1:
+				matrix[neighborI][neighborJ] = 2
+				stack.append((neighborI, neighborJ))
+	return
+
+def getNeighbors(matrix, i, j):
+	neighbors = []
+	if i - 1 >= 0:
+		neighbors.append((i - 1, j))
+	if i + 1 < len(matrix):
+		neighbors.append((i + 1, j))
+	if j - 1 >= 0:
+		neighbors.append((i, j - 1))
+	if j + 1 < len(matrix[0]):
+		neighbors.append((i, j + 1))
+	return neighbors
