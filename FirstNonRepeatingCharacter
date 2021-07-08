@@ -1,0 +1,11 @@
+def firstNonRepeatingCharacter(string):
+	hashChars = {"":2}
+    for i in string:
+		if i not in hashChars:
+			hashChars[i] = 1
+		else:
+			hashChars[i] += 1
+	for i in hashChars:
+		if hashChars[i] == 1:
+			return string.index(i)
+	return -1
