@@ -1,0 +1,13 @@
+def generateDocument(characters, document):
+	table = {"": len(document) + 1}
+    for char in characters:
+		if char in table:
+			table[char] += 1
+		else:
+			table[char] = 1
+	for i in document:
+		if i not in table or table[i] <= 0:
+			return False
+		else:
+			table[i] -= 1
+    return True
