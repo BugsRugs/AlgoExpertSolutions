@@ -1,0 +1,24 @@
+def groupAnagrams(words):
+	if len(words) == 0:
+		return words
+	if len(words) == 1:
+		return [words]
+    sortedWords = []
+	
+	for i in words:
+		sortedWords.append("".join(sorted(i)))
+	indices = {None:None}
+	for i in range(len(words)):
+		if sortedWords[i] in indices:
+			indices[sortedWords[i]] += [i]
+		else:
+			indices[sortedWords[i]] = [i]
+	indices.pop(None)
+	results = []
+	
+	for ele in indices:
+		temp = []
+		for i in range(len(indices[ele])):
+			temp.append(words[indices[ele][i]])
+		results.append(temp)
+	return results
