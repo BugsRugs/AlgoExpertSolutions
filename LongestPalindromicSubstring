@@ -1,0 +1,37 @@
+def longestPalindromicSubstring(string):
+	if len(string) <= 1:
+		return string
+    largestIndices = [0, 0]
+	newIndices = [0, 0]
+	previous = None
+	for i in range(len(string)):
+		if string[i] == previous:
+			newIndices = subChecker(string, i - 1, i)
+		largestIndices = checkLarger(largestIndices, newIndices)
+		if i + 1 < len(string) and i - 1 >= 0:
+			newIndices = subChecker(string, i - 1, i + 1)
+		largestIndices = checkLarger(largestIndices, newIndices)
+		previous = string[i]
+    return string[largestIndices[0]:largestIndices[1] + 1]
+
+
+def subChecker(string, i, j):
+	print(str(i) + ":" + str(j))
+	newIndices = [0, 0]
+	while True:
+		if string[i] == string[j]:
+			if i - 1 >= 0 and j + 1 < len(string):
+				i -= 1
+				j += 1
+			else:
+				newIndices = [i, j]
+				break
+		else:
+			newIndices = [i + 1, j - 1]
+			break
+	return newIndices
+
+def checkLarger(largestIndices, newIndices):
+	if newIndices[1] - newIndices[0] > largestIndices[1] - largestIndices[0]:
+			largestIndices = newIndices
+	return largestIndices
