@@ -1,0 +1,30 @@
+def quickSort(array):
+	helper(array, 0, len(array) - 1)
+	return array
+def helper(array, left, right):
+	pivot = left
+	front = pivot + 1
+	length = len(array)
+	end = right
+	if left >= right:
+		return
+	while end >= front:
+		if array[front] > array[pivot] and array[end] < array[pivot]:
+			swap(array, front, end)
+		if array[front] <= array[pivot]:
+			front += 1
+		if array[end] >= array[pivot]:
+			end -= 1
+	swap(array, pivot, end)
+	b = end - 1 - left < right - (end + 1)
+	if b:
+		helper(array, left, end - 1)
+		helper(array, end + 1, right)
+	else:
+		helper(array, end + 1, right)
+		helper(array, left, end - 1)
+
+def swap(array, i, j):
+	temp = array[i]
+	array[i] = array[j]
+	array[j] = temp
