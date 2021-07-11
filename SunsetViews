@@ -1,0 +1,15 @@
+def sunsetViews(buildings, direction):
+	east = False
+    if direction == "EAST":
+		east = True
+		buildings.reverse()
+	canSee = []
+	tallest = 0
+	for i in range(len(buildings)):
+		if buildings[i] > tallest:
+			tallest = buildings[i]
+			if east:
+				canSee.insert(0, len(buildings) - 1 - i)
+			else:
+				canSee.append(i)
+    return canSee
