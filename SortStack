@@ -1,0 +1,15 @@
+def sortStack(stack):
+	if stack == []:
+		return stack
+	current = stack.pop()
+	sortStack(stack)
+	helper(stack, current)
+    return stack
+
+def helper(stack, value):
+	if stack == [] or stack[-1] <= value:
+		stack.append(value)
+		return
+	current = stack.pop()
+	helper(stack, value)
+	stack.append(current)
