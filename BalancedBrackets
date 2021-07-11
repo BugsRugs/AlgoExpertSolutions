@@ -1,0 +1,27 @@
+def balancedBrackets(string):
+    a = "("
+	b = "["
+	c = "{"
+	d = ")"
+	e = "]"
+	f = "}"
+	bracks = "([{"
+	cbracks = ")]}"
+	stack = []
+	for bracket in string:
+		if bracket in bracks:
+			stack.append(bracket)
+		elif bracket in cbracks:
+			if len(stack) == 0:
+				return False
+			recent = stack.pop()
+			if bracket == d:
+				if recent != a:
+					return False
+			if bracket == e:
+				if recent != b:
+					return False
+			if bracket == f:
+				if recent != c:
+					return False
+	return len(stack) == 0
