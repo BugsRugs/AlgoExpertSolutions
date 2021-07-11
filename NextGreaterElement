@@ -1,0 +1,13 @@
+def nextGreaterElement(array):
+    results = [-1 for i in range(len(array))]
+	stack = []
+	for i in range(len(array) * 2):
+		idx = i % len(array)
+		if stack == []:
+			stack.append(idx)
+		else:
+			while stack != [] and array[idx] > array[stack[-1]]:
+				index = stack.pop()
+				results[index] = array[idx]
+			stack.append(idx)
+    return results
