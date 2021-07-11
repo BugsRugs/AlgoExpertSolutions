@@ -1,0 +1,29 @@
+# This is an input class. Do not edit.
+class BinaryTree:
+    def __init__(self, value, left=None, right=None, parent=None):
+        self.value = value
+        self.left = left
+        self.right = right
+        self.parent = parent
+
+
+def findSuccessor(tree, node):
+    tempNode = getNode(tree, node.right)
+	if tempNode == None:
+		return getParent(tree, node)
+	return tempNode
+	
+def getNode(tree, node):
+	if node == None:
+		return None
+	if node.left != None:
+		return getNode(tree, node.left)
+	else:
+		return node
+	
+def getParent(tree, node):
+	curr = node
+	while curr.parent != None and curr.parent.right == curr:
+		curr = curr.parent
+	return curr.parent
+#the idea is to get the left most element of the right subtree to be the succesor
