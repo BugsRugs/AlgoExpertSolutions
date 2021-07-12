@@ -1,0 +1,19 @@
+def shiftedBinarySearch(array, target):
+    return helper(array, target, 0, len(array) - 1)
+
+def helper(array, target, leftIdx, rightIdx):
+	while leftIdx <= rightIdx:
+		middleIdx = (leftIdx + rightIdx) // 2
+		if array[middleIdx] == target:
+			return middleIdx
+		if array[leftIdx] <= array[middleIdx]:
+			if target < array[middleIdx] and target >= array[leftIdx]:
+				rightIdx = middleIdx - 1
+			else:
+				leftIdx = middleIdx + 1
+		else:
+			if target > array[middleIdx] and target <= array[rightIdx]:
+				leftIdx = middleIdx + 1
+			else:
+				rightIdx = middleIdx - 1
+	return -1
