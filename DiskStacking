@@ -1,0 +1,22 @@
+def diskStacking(disks):
+    disks.sort(key = lambda disk: disk[2]) #sorted by height
+	heights = []
+	for i in range(len(disks)):
+		heights.append(disks[i][2])
+	print(heights)
+	discTracker = [-1 for i in range(len(disks))]
+	for i in range(len(disks)):
+		currIndex = 0
+		while currIndex < i:
+			if disks[currIndex][0] < disks[i][0] and disks[currIndex][1] < disks[i][1] and disks[currIndex][2] < disks[i][2]:
+				if heights[currIndex] + disks[i][2] > heights[i]:
+					heights[i] = heights[currIndex] + disks[i][2]
+					discTracker[i] = currIndex
+			currIndex += 1
+	print(heights)
+	index = heights.index(max(heights))
+	results = []
+	while index >= 0 and index < len(disks):
+		results.insert(0, disks[index])
+		index = discTracker[index]
+    return results
