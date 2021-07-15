@@ -1,0 +1,11 @@
+def longestSubstringWithoutDuplication(string):
+    seen = {}
+	longestRange = [0, 0]
+	index = 0
+	for i, char in enumerate(string):
+		if char in seen:
+			index = max(index, seen[char] + 1)
+		if longestRange[1] - longestRange[0] < i + 1 - index:
+			longestRange = [index, i + 1]
+		seen[char] = i
+	return string[longestRange[0]: longestRange[1]]
