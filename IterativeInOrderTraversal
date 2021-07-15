@@ -1,0 +1,20 @@
+def iterativeInOrderTraversal(tree, callback):
+	previous = None
+	current = tree
+    while current != None:
+		if previous == None or previous == current.parent:
+			if current.left != None:
+				next = current.left
+			else:
+				callback(current)
+				if current.right != None:
+					next = current.right
+				else:
+					next = current.parent
+		elif previous == current.left:
+			callback(current)
+			next = current.right if current.right != None else current.parent
+		else:
+			next = current.parent
+		previous = current
+		current = next
