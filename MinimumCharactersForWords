@@ -1,0 +1,17 @@
+def minimumCharactersForWords(words):
+    totalChars = {}
+	for word in words:
+		wordChars = {}
+		for char in word:
+			if char not in wordChars:
+				wordChars[char] = 0
+			wordChars[char] += 1
+		for i in wordChars:
+			if i not in totalChars:
+				totalChars[i] = 0
+			totalChars[i] = max(totalChars[i], wordChars[i])
+	result = []
+	for i in totalChars:
+		for j in range(totalChars[i]):
+			result.append(i)
+    return result
